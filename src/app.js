@@ -1,14 +1,15 @@
 const express = require("express");
-const cors = require("cors");
-const userRoutes = require("./presentation/routes/userRoutes");
-const todoRoutes = require("./presentation/routes/todoRoutes");
-
 const app = express();
-
-app.use(cors());
 app.use(express.json());
+const crudService = require('./application/use-cases/crudService')
+
+const mainController = require("./presentation/controllers/mainController")(crudService);
+
+const userRoutes = require("./presentation/routes/userRoutes")(mainController);
+const todoRoutes = require("./presentation/routes/todoRoutes")(mainController);
 
 app.use("/api/users", userRoutes);
-app.use("/api/todos", todoRoutes);
+app.use("/api/todo", todoRoutes);
+
 
 module.exports = app;
