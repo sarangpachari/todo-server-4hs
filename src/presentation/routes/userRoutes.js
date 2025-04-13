@@ -3,10 +3,10 @@ module.exports = (mainController) => {
     const router = express.Router();
 
     router
-        .route('/')
+        .route('/register')
         .post(mainController.create),
         router
-            .route('/login')
+            .route('/')
             .get(mainController.login)
 
 

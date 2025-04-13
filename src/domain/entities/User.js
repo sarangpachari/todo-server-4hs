@@ -17,7 +17,6 @@ const createUser = ({
     if (!email || !isValidEmail(email)) {
         throw new Error('Invalid email format');
     }
-
     return {
         id,
         fname,
