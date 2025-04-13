@@ -10,7 +10,6 @@ module.exports = () => ({
     create: async (req, res) => {
         try {
             const { data, entity } = req.body;
-
             let repoFactory;
             let options = {};
 
