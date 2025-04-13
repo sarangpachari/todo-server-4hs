@@ -5,6 +5,6 @@ module.exports = (mainController) => {
     router
         .route('/')
         .post(mainController.create)
-        
+
     return router
 }
