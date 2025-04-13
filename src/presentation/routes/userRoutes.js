@@ -4,7 +4,11 @@ module.exports = (mainController) => {
 
     router
         .route('/')
-        .post(mainController.create)
-        
+        .post(mainController.create),
+        router
+            .route('/login')
+            .get(mainController.login)
+
+
     return router
 }
