@@ -25,8 +25,17 @@ module.exports = (repository, options = {}) => {
             return await loginHook(data, repository);
         },
 
-        getById: async (id) => {
+        getById: async (req, res) => {
+            const { id } = req.params;
             return await repository.getById(id);
+        },
+        getFovouriteTodo: async (req, res) => {
+            const { id } = req.params;
+            return await repository.getFovouriteTodo(id);
+        },
+        getOngoingTodo: async (req, res) => {
+            const { id } = req.params;
+            return await repository.getOngoingTodo(id);
         }
     };
 };

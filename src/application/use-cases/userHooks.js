@@ -21,7 +21,7 @@ module.exports = {
     },
 
     afterCreate: async (user) => {
-        const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
         return token;
     },
 
@@ -39,7 +39,7 @@ module.exports = {
             throw new Error('Invalid credentials');
         }
 
-        const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
         return { ...user, token };
     }
 };

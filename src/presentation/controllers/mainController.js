@@ -22,7 +22,6 @@ module.exports = () => ({
             } else {
                 return res.status(400).json({ error: 'Invalid entity type' });
             }
-
             const repository = repoFactory();
             const crudService = crudServiceFactory(repository, options);
 
@@ -30,7 +29,7 @@ module.exports = () => ({
             return res.status(201).json(result);
 
         } catch (err) {
-            return res.status(400).json({ error: err.message });
+            return res.status(500).json({ error: err.message });
         }
     },
     login: async (req, res) => {
@@ -45,5 +44,34 @@ module.exports = () => ({
         } catch (err) {
             return res.status(400).json({ error: err.message });
         }
+    },
+    getTodoByCreatorId: async (req, res) => {
+        try {
+           
+            const crudService = crudServiceFactory(todoRepo()); // ✅ ✅ ✅
+            const result = await crudService.getById(req, res);
+            res.status(200).json(result);
+        } catch (err) {
+            res.status(500).json({ error: err.message });
+        }
+    },
+    getFovouriteTodo: async (req, res) => {
+        try {
+            const crudService = crudServiceFactory(todoRepo()); // ✅ ✅ ✅
+            const result = await crudService.getFovouriteTodo(req, res);
+            res.status(200).json(result);
+        } catch (err) {
+            res.status(500).json({ error: err.message });
+        }
+    },
+    getOngoingTodo: async (req, res) => {
+        try {
+            const crudService = crudServiceFactory(todoRepo()); // ✅ ✅ ✅
+            const result = await crudService.getOngoingTodo(req, res);
+            res.status(200).json(result);
+        } catch (err) {
+            res.status(500).json({ error: err.message });
+        }
     }
+    
 });

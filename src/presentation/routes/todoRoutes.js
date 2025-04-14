@@ -4,7 +4,16 @@ module.exports = (mainController) => {
 
     router
         .route('/')
-        .post(mainController.create)
-
+        .post(mainController.create);
+        router
+        .route('/:id')
+        .get(mainController.getTodoByCreatorId);
+        router
+        .route('/favourite/:id')
+        .get(mainController.getFovouriteTodo);
+        router
+        .route('/ongoing/:id')
+        .get(mainController.getOngoingTodo);
+        
     return router
 }
