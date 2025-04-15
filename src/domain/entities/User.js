@@ -24,7 +24,6 @@ const createUser = ({
         lname,
         email,
         password,
-        profileIcon,
         createdAt,
         updatedAt
 

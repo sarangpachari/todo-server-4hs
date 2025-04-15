@@ -44,6 +44,6 @@ module.exports = (repository, options = {}) => {
         },
         delete: async (id) => {
             return await repository.delete(id);
-        },
+        }
     };
 };
