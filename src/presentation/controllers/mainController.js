@@ -5,7 +5,7 @@ const userHooks = require('../../application/use-cases/userHooks');
 
 const userRepo = require('../../infrastructure/database/repositories/UserRepositoryImpl');
 const todoRepo = require('../../infrastructure/database/repositories/TodoRepositoryImpl');
-
+const {sendOtpMail}  = require('../nodemailerConfig')
 module.exports = () => ({
     create: async (req, res) => {
         try {
@@ -26,6 +26,13 @@ module.exports = () => ({
             const crudService = crudServiceFactory(repository, options);
 
             const result = await crudService.create(data);
+            if(result.response == "success" || result.email){
+                const email= result.email;
+                const name = result.fname
+                console.log(email);
+                
+                await sendOtpMail(email,name);
+            }
             return res.status(201).json(result);
 
         } catch (err) {
