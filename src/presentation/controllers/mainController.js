@@ -116,6 +116,16 @@ module.exports = () => ({
         } catch (err) {
             res.status(500).json({ error: err.message });
         }
+    },
+    removeUser: async (req, res) => {
+        try {
+            const { id } = req.params;
+            const crudService = crudServiceFactory(userRepo());
+            const result = await crudService.delete(id);
+            res.status(200).json(result);
+        } catch (err) {
+            res.status(500).json({ error: err.message });
+        }
     }
 
 
