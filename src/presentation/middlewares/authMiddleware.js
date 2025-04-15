@@ -4,7 +4,7 @@ const jwtMiddleware = (req, res, next) => {
     const token = req.header("Authorization");
     if (!token) {
         return res
-            .status(401)
+            .status(400)
             .json({ message: "No token, Authorization denied !" });
     }
 

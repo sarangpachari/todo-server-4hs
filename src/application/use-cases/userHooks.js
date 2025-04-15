@@ -27,8 +27,6 @@ module.exports = {
 
     login: async (data, userRepository) => {
         const { email, password } = data;
-        console.log(email, password, userRepository);
-
         const user = await userRepository.findByEmail(email);
         if (!user) {
             throw new Error('User not found');
