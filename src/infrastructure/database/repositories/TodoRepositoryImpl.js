@@ -7,9 +7,7 @@ module.exports = () => ({
         return await prisma.todo.findMany({
             where: { creatorId: id },
         })
-    }
-    ,
-
+    },
     getFovouriteTodo: async (id) => {
         return await prisma.todo.findMany({
             where: { isFavourite: true, creatorId: id },
@@ -30,7 +28,19 @@ module.exports = () => ({
           where: { id },         
           data: { status:data }
         });
-      }
+      },
+      updateFavourite: async (id,data) => {
+        return await prisma.todo.update({
+            where: { id },
+            data: { isFavourite},
+    });
+    
+      },
+      delete : async (id, ) => {
+        return await prisma.todo.delete({
+          where: { id }             
+        });
+      },
       
 });
 

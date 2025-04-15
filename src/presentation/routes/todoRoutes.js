@@ -21,5 +21,11 @@ module.exports = (mainController) => {
         router
         .route('/update/:id')
         .put(jwtMiddleware,mainController.updateTodo);
+        router
+        .route('/updateFavourite/:id')
+        .put(jwtMiddleware,mainController.updateFavourite);
+        router
+        .route('/delete/:id')
+        .delete(jwtMiddleware,mainController.delete);
     return router
 }
