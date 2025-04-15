@@ -29,12 +29,18 @@ module.exports = () => ({
           data: { status:data }
         });
       },
-      updateFavourite: async (id,data) => {
+      updateFavourite: async (id, data) => {
+        if(data=="true"){
         return await prisma.todo.update({
-            where: { id },
-            data: { isFavourite},
-    });
-    
+          where: { id },         
+          data: { isFavourite:true}
+        });
+    }else{
+        return await prisma.todo.update({
+            where: { id },         
+            data: { isFavourite:false}
+          });
+    }
       },
       delete : async (id, ) => {
         return await prisma.todo.delete({
