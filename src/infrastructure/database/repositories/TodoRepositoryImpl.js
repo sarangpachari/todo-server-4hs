@@ -6,21 +6,33 @@ module.exports = () => ({
     getById: async (id) => {
         return await prisma.todo.findMany({
             where: { creatorId: id },
+            orderBy: {
+              createdAt: 'desc',
+            },
         })
     },
     getFovouriteTodo: async (id) => {
         return await prisma.todo.findMany({
             where: { isFavourite: true, creatorId: id },
+            orderBy: {
+              updatedAt: 'desc',
+            },
         })
     },
     getOngoingTodo: async (id) => {
         return await prisma.todo.findMany({
             where: { status: "ongoing", creatorId: id },
+            orderBy: {
+              createdAt: 'desc',
+            },
         })
     },
     getCompletedTodo: async (id) => {
         return await prisma.todo.findMany({
             where: { status: "completed", creatorId: id },
+            orderBy: {
+              updatedAt: 'desc',
+            },
         })
     },
     update: async (id, data) => {
