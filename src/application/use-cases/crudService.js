@@ -24,9 +24,20 @@ module.exports = (repository, options = {}) => {
             if (!loginHook) throw new Error("Login hook not provided");
             return await loginHook(data, repository);
         },
-
         getById: async (id) => {
             return await repository.getById(id);
-        }
+          },
+        getFovouriteTodo: async (id) => {
+            return await repository.getFovouriteTodo(id);
+        },
+        getOngoingTodo: async (id) => {
+            return await repository.getOngoingTodo(id);
+        },
+        getCompletedTodo: async (id) => {
+            return await repository.getCompletedTodo(id);
+        },
+        update: async (id,data) => {
+            return await repository.update(id,data);
+        },
     };
 };
