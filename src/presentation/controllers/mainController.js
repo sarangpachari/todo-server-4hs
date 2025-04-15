@@ -47,9 +47,9 @@ module.exports = () => ({
     },
     getTodoByCreatorId: async (req, res) => {
         try {
-           
-            const crudService = crudServiceFactory(todoRepo()); // ✅ ✅ ✅
-            const result = await crudService.getById(req, res);
+            const { id } = req.params;
+            const crudService = crudServiceFactory(todoRepo());
+            const result = await crudService.getById(id);
             res.status(200).json(result);
         } catch (err) {
             res.status(500).json({ error: err.message });
@@ -57,8 +57,9 @@ module.exports = () => ({
     },
     getFovouriteTodo: async (req, res) => {
         try {
-            const crudService = crudServiceFactory(todoRepo()); // ✅ ✅ ✅
-            const result = await crudService.getFovouriteTodo(req, res);
+            const { id } = req.params;
+            const crudService = crudServiceFactory(todoRepo());
+            const result = await crudService.getFovouriteTodo(id);
             res.status(200).json(result);
         } catch (err) {
             res.status(500).json({ error: err.message });
@@ -66,12 +67,46 @@ module.exports = () => ({
     },
     getOngoingTodo: async (req, res) => {
         try {
-            const crudService = crudServiceFactory(todoRepo()); // ✅ ✅ ✅
-            const result = await crudService.getOngoingTodo(req, res);
+            const { id } = req.params;
+            const crudService = crudServiceFactory(todoRepo());
+            const result = await crudService.getOngoingTodo(id);
+            res.status(200).json(result);
+        } catch (err) {
+            res.status(500).json({ error: err.message });
+        }
+    },
+    getCompletedTodo: async (req, res) => {
+        try {
+            const { id } = req.params;
+            const crudService = crudServiceFactory(todoRepo());
+            const result = await crudService.getCompletedTodo(id);
+            res.status(200).json(result);
+        } catch (err) {
+            res.status(500).json({ error: err.message });
+        }
+    },
+    updateTodo: async (req, res) => {
+        try {
+            const { id } = req.params;
+            const {data} = req.body;
+            const crudService = crudServiceFactory(todoRepo());
+            const result = await crudService.update(id,data);
+            res.status(200).json(result);
+        } catch (err) {
+            res.status(500).json({ error: err.message });
+        }
+    },
+    updateTodo: async (req, res) => {
+        try {
+            const { id } = req.params;
+            const {data} = req.body;
+            const crudService = crudServiceFactory(todoRepo());
+            const result = await crudService.update(id,data);
             res.status(200).json(result);
         } catch (err) {
             res.status(500).json({ error: err.message });
         }
     }
-    
+
+
 });

@@ -4,7 +4,7 @@ module.exports = (mainController) => {
 
 
   router.route("/register").post(mainController.create);
-  router.route("/").post(mainController.login);
+  router.route("/").get(mainController.login);
 
   return router;
 };
