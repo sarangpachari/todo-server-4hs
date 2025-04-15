@@ -39,5 +39,11 @@ module.exports = (repository, options = {}) => {
         update: async (id,data) => {
             return await repository.update(id,data);
         },
+        updateFavourite: async (id,data) => {
+            return await repository.updateFavourite(id,data);
+        },
+        delete: async (id) => {
+            return await repository.delete(id);
+        },
     };
 };
