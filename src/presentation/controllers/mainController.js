@@ -94,9 +94,10 @@ module.exports = () => ({
     },
     getSerachedTodo: async (req, res) => {
         try {
+            const { id } = req.params;
             const { search } = req.query;
             const crudService = crudServiceFactory(todoRepo());
-            const result = await crudService.getSearchedTodo(search);
+            const result = await crudService.getSearchedTodo(id,search);
             res.status(200).json(result);
         } catch (err) {
             res.status(500).json({ error: err.message });
