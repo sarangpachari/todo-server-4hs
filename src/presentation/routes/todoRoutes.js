@@ -19,6 +19,9 @@ module.exports = (mainController) => {
         .route('/completed/:id')
         .get(jwtMiddleware,mainController.getCompletedTodo);
         router
+        .route('/searchTodo/search')
+        .get(jwtMiddleware,mainController.getSerachedTodo);
+        router
         .route('/update/:id')
         .put(jwtMiddleware,mainController.updateTodo);
         router

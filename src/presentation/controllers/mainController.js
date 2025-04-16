@@ -92,6 +92,16 @@ module.exports = () => ({
             res.status(500).json({ error: err.message });
         }
     },
+    getSerachedTodo: async (req, res) => {
+        try {
+            const { search } = req.query;
+            const crudService = crudServiceFactory(todoRepo());
+            const result = await crudService.getSearchedTodo(search);
+            res.status(200).json(result);
+        } catch (err) {
+            res.status(500).json({ error: err.message });
+        }
+    },
     updateTodo: async (req, res) => {
         try {
             const { id } = req.params;
