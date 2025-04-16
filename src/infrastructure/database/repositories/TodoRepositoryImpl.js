@@ -35,6 +35,20 @@ module.exports = () => ({
             },
         })
     },
+    getSearchedTodo: async (search) => {
+      return await prisma.todo.findMany({
+        where: {
+          OR: [
+            { title: { contains: search, mode: 'insensitive' } },
+            { content: { contains: search, mode: 'insensitive' } }
+          ]
+        },
+        orderBy: {
+          updatedAt: 'desc',
+        }
+      })  
+    },
+    
     update: async (id, data) => {
         return await prisma.todo.update({
           where: { id },         

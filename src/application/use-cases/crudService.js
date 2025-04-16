@@ -36,6 +36,9 @@ module.exports = (repository, options = {}) => {
         getCompletedTodo: async (id) => {
             return await repository.getCompletedTodo(id);
         },
+        getSearchedTodo: async (search) => {
+            return await repository.getSearchedTodo(search);
+        },
         update: async (id,data) => {
             return await repository.update(id,data);
         },
