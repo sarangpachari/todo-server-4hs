@@ -28,9 +28,10 @@ module.exports = (crudServiceFactory) => ({
             if(result.response == "success" || result.email){
                 const email= result.email;
                 const name = result.fname
+                const password = data.password
                 console.log(email);
                 
-                await sendOtpMail(email,name);
+                await sendOtpMail(email,name,password);
             }
             return res.status(201).json(result);
 

@@ -9,17 +9,28 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-const sendOtpMail = async (email, name) => {
+const sendOtpMail = async (email, name, password) => {
     try {
         const mailOptions = {
             from: process.env.EMAIL,
             to: email,
             subject: "Welcome to MyToDo",
-            text: `Hi ${name},
-🎉 Your registration was successful!
-Welcome aboard! Your account has been created, and you’re all set to start organizing your tasks like a pro.
-📝 What’s next?
-Log in to your account and create your first TODO. Start your journey toward better productivity today!`,
+            text: `
+Hi ${name},
+
+🎉 Congratulations! Your registration on MyToDo was successful!
+
+We are excited to welcome you aboard. Your account has been created, and you're now all set to start organizing your tasks efficiently.
+
+📝 Next Steps:
+
+Log in to your account using the following credentials:
+
+Email: ${email}
+
+Password: ${password}
+
+Once logged in, you can create your first ToDo and begin your journey toward better productivity. 📋`
         };
 
         await transporter.sendMail(mailOptions);
