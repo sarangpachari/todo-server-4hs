@@ -1,12 +1,11 @@
 // presentation/controllers/mainController.js
-
-const crudServiceFactory = require('../../application/use-cases/crudService');
+//const crudServiceFactory = require('../../application/use-cases/crudService');
 const userHooks = require('../../application/use-cases/userHooks');
 
 const userRepo = require('../../infrastructure/database/repositories/UserRepositoryImpl');
 const todoRepo = require('../../infrastructure/database/repositories/TodoRepositoryImpl');
 const {sendOtpMail}  = require('../nodemailerConfig')
-module.exports = () => ({
+module.exports = (crudServiceFactory) => ({
     create: async (req, res) => {
         try {
             const { data, entity } = req.body;

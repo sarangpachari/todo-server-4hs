@@ -8,10 +8,10 @@ app.use(cors({ origin: true, credentials: true }));
 
 
 
-const crudService = require("./application/use-cases/crudService");
+const crudServiceFactory = require("./application/use-cases/crudService");
 
 const mainController = require("./presentation/controllers/mainController")(
-  crudService
+  crudServiceFactory
 );
 
 const userRoutes = require("./presentation/routes/userRoutes")(mainController);
